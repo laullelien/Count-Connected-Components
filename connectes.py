@@ -150,7 +150,7 @@ def print_components_sizes(distance, grid, to_visit, limits):
         if not visited[i][j] and grid[i][j]:
             group_nb.append(explore(grid, i, j, visited, distance))
     group_nb.sort(reverse=True)
-    print(group_nb, len(group_nb), sum(group_nb))
+    print(group_nb)
 
 
 def main():

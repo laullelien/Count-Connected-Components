@@ -25,13 +25,14 @@ def load_instance(filename):
         min_x=min(x_coord)
         max_x=max(x_coord)
         min_y=min(y_coord) 
-        max_y=max(y_coord) 
-        grid=[[ [] for _ in range(int((max_y-min_y)/distance)+1) ] for _ in range(int((max_x-min_x)/distance)+1)]
-        visited=[[ False for _ in range(int((max_y-min_y)/distance)+1) ] for _ in range(int((max_x-min_x)/distance)+1)]
+        max_y=max(y_coord)
+        cell_size=(0.51*distance)
+        grid=[[ [] for _ in range(int((max_y-min_y)/cell_size)+1) ] for _ in range(int((max_x-min_x)/cell_size)+1)]
+        visited=[[ False for _ in range(int((max_y-min_y)/cell_size)+1) ] for _ in range(int((max_x-min_x)/cell_size)+1)]
         to_visit=set()
         for i in range(len(x_coord)):
-            idx_x=int((x_coord[i]-min_x)/distance)
-            idx_y=int((y_coord[i]-min_y)/distance)
+            idx_x=int((x_coord[i]-min_x)/cell_size)
+            idx_y=int((y_coord[i]-min_y)/cell_size)
             grid[idx_x][idx_y].append((x_coord[i], y_coord[i]))
             to_visit.add((idx_x, idx_y))
     return distance**2, grid, to_visit, visited
@@ -50,8 +51,8 @@ def visit(grid, i, j, visited, distance):
     max_x_idx=len(grid)
     max_y_idx=len(grid[0])
     size=len(grid[i][j])
-    for x in range(i-1, i+2):
-        for y in range(j-1, j+2):
+    for x in range(i-2, i+3):
+        for y in range(j-2, j+3):
             if x>=0 and y>=0 and x<max_x_idx and y<max_y_idx and connection(grid, i, j, x, y, distance):
                 size+=visit(grid, x, y, visited, distance)
     return size

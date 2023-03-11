@@ -77,7 +77,7 @@ def print_components_sizes(distance, grid, to_visit, visited):
         if not visited[i][j]:
             components_sizes.append(visit(grid, i, j, visited, distance))
     components_sizes.sort(reverse=True)
-    print(components_sizes, len(components_sizes), sum(components_sizes))
+    print(components_sizes)
 
 def main():
     """

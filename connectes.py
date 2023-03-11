@@ -7,159 +7,85 @@ sort and display.
 from timeit import timeit
 from sys import argv
 
-from geo.point import Point
-
 
 def load_instance(filename):
     """
     loads .pts file.
-    returns distance limit and points.
+    returns distance limit and grid.
     """
-    to_visit = set()
     with open(filename, "r") as instance_file:
         lines = iter(instance_file)
         distance = float(next(lines))
-        points = [Point([float(f) for f in next(lines).split(",")])]
-        min_x = points[0].coordinates[0]
-        max_x = min_x
-        min_y = points[0].coordinates[1]
-        max_y = min_y
+        x_coord = list()
+        y_coord = list()
         for l in lines:
-            new_point = Point([float(f) for f in l.split(",")])
-            points.append(new_point)
-            if new_point.coordinates[0] < min_x:
-                min_x = new_point.coordinates[0]
-            elif new_point.coordinates[0] > max_x:
-                max_x = new_point.coordinates[0]
-            if new_point.coordinates[1] < min_y:
-                min_y = new_point.coordinates[1]
-            elif new_point.coordinates[1] > max_y:
-                max_y = new_point.coordinates[1]
-        grid = [[[] for _ in range(int((max_y-min_y)/distance)+1)]
-                for _ in range(int((max_x-min_x)/distance)+1)]
-        for point in points:
-            idx_x = int((point.coordinates[0]-min_x)/distance)
-            idx_y = int((point.coordinates[1]-min_y)/distance)
-            grid[idx_x][idx_y].append(point)
+            new_point=[float(f) for f in l.split(",")]
+            x_coord.append(new_point[0])
+            y_coord.append(new_point[1])
+        min_x=min(x_coord)
+        max_x=max(x_coord)
+        min_y=min(y_coord) 
+        max_y=max(y_coord) 
+        grid=[[ [] for _ in range(int((max_y-min_y)/distance)+1) ] for _ in range(int((max_x-min_x)/distance)+1)]
+        visited=[[ False for _ in range(int((max_y-min_y)/distance)+1) ] for _ in range(int((max_x-min_x)/distance)+1)]
+        to_visit=set()
+        for i in range(len(x_coord)):
+            idx_x=int((x_coord[i]-min_x)/distance)
+            idx_y=int((y_coord[i]-min_y)/distance)
+            grid[idx_x][idx_y].append((x_coord[i], y_coord[i]))
             to_visit.add((idx_x, idx_y))
-    return distance, grid, to_visit, ((min_x, max_x), (min_y, max_y))
+    return distance**2, grid, to_visit, visited
 
 
-def explore(grid, i, j, visited, distance):
+def visit(grid, i, j, visited, distance):
     """
-    Retourne le nombre d'éléments de la composante connexe des points de grid[i][j]
+    returns the size of the connecting components containing the points of grid[i][j]
     """
-    if not grid[i][j] or visited[i][j]:
+    if visited[i][j]:
         return 0
-    visited[i][j] = True
-    group_elements = len(grid[i][j])
-    max_x = len(grid) - 1
-    max_y = len(grid[0]) - 1
-    if i != 0:
-        found = False
-        for p1 in grid[i][j]:
-            for p2 in grid[i-1][j]:
-                if p1.distance_to(p2) <= distance:
-                    found = True
-                    break
-            if found:
-                group_elements += explore(grid, i-1, j, visited, distance)
-                break
-    if i != max_x:
-        found = False
-        for p1 in grid[i][j]:
-            for p2 in grid[i+1][j]:
-                if p1.distance_to(p2) <= distance:
-                    found = True
-                    break
-            if found:
-                group_elements += explore(grid, i+1, j, visited, distance)
-                break
-    if j != 0:
-        found = False
-        for p1 in grid[i][j]:
-            for p2 in grid[i][j-1]:
-                if p1.distance_to(p2) <= distance:
-                    found = True
-                    break
-            if found:
-                group_elements += explore(grid, i, j-1, visited, distance)
-                break
-    if j != max_y:
-        found = False
-        for p1 in grid[i][j]:
-            for p2 in grid[i][j+1]:
-                if p1.distance_to(p2) <= distance:
-                    found = True
-                    break
-            if found:
-                group_elements += explore(grid, i, j+1, visited, distance)
-                break
-    if i != max_x and j != 0:
-        found = False
-        for p1 in grid[i][j]:
-            for p2 in grid[i+1][j-1]:
-                if p1.distance_to(p2) <= distance:
-                    found = True
-                    break
-            if found:
-                group_elements += explore(grid, i+1, j-1, visited, distance)
-                break
-    if i != max_x and j != max_y:
-        found = False
-        for p1 in grid[i][j]:
-            for p2 in grid[i+1][j+1]:
-                if p1.distance_to(p2) <= distance:
-                    found = True
-                    break
-            if found:
-                group_elements += explore(grid, i+1, j+1, visited, distance)
-                break
-    if i != 0 and j != 0:
-        found = False
-        for p1 in grid[i][j]:
-            for p2 in grid[i-1][j-1]:
-                if p1.distance_to(p2) <= distance:
-                    found = True
-                    break
-            if found:
-                group_elements += explore(grid, i-1, j-1, visited, distance)
-                break
-    if i != 0 and j != max_y:
-        found = False
-        for p1 in grid[i][j]:
-            for p2 in grid[i-1][j+1]:
-                if p1.distance_to(p2) <= distance:
-                    found = True
-                    break
-            if found:
-                group_elements += explore(grid, i-1, j+1, visited, distance)
-                break
-
-    return group_elements
-
-
-def print_components_sizes(distance, grid, to_visit, limits):
+    if not grid[i][j]:
+        visited[i][j]=True
+        return 0
+    visited[i][j]=True
+    max_x_idx=len(grid)
+    max_y_idx=len(grid[0])
+    size=len(grid[i][j])
+    for x in range(i-1, i+2):
+        for y in range(j-1, j+2):
+            if x>=0 and y>=0 and x<max_x_idx and y<max_y_idx and connection(grid, i, j, x, y, distance):
+                size+=visit(grid, x, y, visited, distance)
+    return size
+                
+def connection(grid, i, j, x, y, distance):
     """
-    affichage des tailles triees de chaque composante
+    returns whether some points of grid[i][j] and grid[x][y] are connected
     """
-    visited = [[False for _ in range(int((limits[1][1]-limits[1][0])/distance)+1)]
-               for _ in range(int((limits[0][1]-limits[0][0])/distance)+1)]
-    group_nb = []
+    for p in grid[i][j]:
+        for q in grid[x][y]:
+            if (p[0]-q[0])**2+(p[1]-q[1])**2 <= distance:
+                return True
+    return False
+
+
+
+def print_components_sizes(distance, grid, to_visit, visited):
+    """
+    prints the sizes of the connected components in decreasing order
+    """
+    components_sizes=list()
     for i, j in to_visit:
-        if not visited[i][j] and grid[i][j]:
-            group_nb.append(explore(grid, i, j, visited, distance))
-    group_nb.sort(reverse=True)
-    print(group_nb)
-
+        if not visited[i][j]:
+            components_sizes.append(visit(grid, i, j, visited, distance))
+    components_sizes.sort(reverse=True)
+    print(components_sizes, len(components_sizes), sum(components_sizes))
 
 def main():
     """
-    ne pas modifier: on charge une instance et on affiche les tailles
+    loads an instance and prints the sizes
     """
     for instance in argv[1:]:
-        distance, grid, to_visit, limits = load_instance(instance)
-        print_components_sizes(distance, grid, to_visit, limits)
+        distance, grid, to_visit, visited = load_instance(instance)
+        print_components_sizes(distance, grid, to_visit, visited)
 
 
 main()

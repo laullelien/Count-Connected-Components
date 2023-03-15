@@ -5,10 +5,7 @@ sort and display.
 """
 
 from timeit import timeit
-from sys import argv
-from time import time
-import itertools
-from functools import cache
+from sys import argv 
 
 
 def load_instance(filename):
@@ -29,7 +26,7 @@ def load_instance(filename):
         max_x=max(x_coord)
         min_y=min(y_coord) 
         max_y=max(y_coord)
-        cell_size=0.51*distance
+        cell_size=0.7071067811865475*distance
         grid=[[ [] for _ in range(int((max_y-min_y)/cell_size)+1) ] for _ in range(int((max_x-min_x)/cell_size)+1)]
         visited=[[ False for _ in range(int((max_y-min_y)/cell_size)+1) ] for _ in range(int((max_x-min_x)/cell_size)+1)]
         to_visit=set()
@@ -45,13 +42,15 @@ def visit(grid, i, j, visited, distance, max_x_idx, max_y_idx):
     """
     returns the size of the connecting components containing the points of grid[i][j]
     """
-    if visited[i][j]:
+    if not grid[i][j] or visited[i][j]:
         return 0
     visited[i][j]=True
     size=len(grid[i][j])
     for x in range(max(0, i-2), min(max_x_idx, i+3)):
         for y in range(max(0, j-2), min(max_y_idx, j+3)):
-            if connection(grid, i, j, x, y, distance):
+            if abs(x-i)+abs(y-j)==4:
+                break
+            elif connection(grid, i, j, x, y, distance):
                 size+=visit(grid, x, y, visited, distance, max_x_idx, max_y_idx)
     return size
 
@@ -79,16 +78,14 @@ def print_components_sizes(distance, grid, to_visit, visited):
         if not visited[i][j]:
             components_sizes.append(visit(grid, i, j, visited, distance, max_x_idx, max_y_idx))
     components_sizes.sort(reverse=True)
-    print(components_sizes)
+    print(components_sizes, len(components_sizes))
 
 def main():
     """
     loads an instance and prints the sizes
     """
     for instance in argv[1:]:
-        t0=time()
         distance, grid, to_visit, visited = load_instance(instance)
-        print(time()-t0)
         print_components_sizes(distance, grid, to_visit, visited)
 
 

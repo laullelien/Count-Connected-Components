@@ -46,11 +46,19 @@ def visit(grid, i, j, visited, distance, max_x_idx, max_y_idx):
         return 0
     visited[i][j]=True
     size=len(grid[i][j])
-    for x in range(max(0, i-2), min(max_x_idx, i+3)):
+    left_bound_y=max(0, j-1)
+    right_bound_y=min(max_y_idx, j+2)
+    x=max(0, i-2)
+    for y in range(left_bound_y, right_bound_y):
+        if connection(grid, i, j, x, y, distance):
+            size+=visit(grid, x, y, visited, distance, max_x_idx, max_y_idx)
+    for x in range(max(0, i-1), min(max_x_idx, i+2)):
         for y in range(max(0, j-2), min(max_y_idx, j+3)):
-            if abs(x-i)+abs(y-j)==4:
-                break
-            elif connection(grid, i, j, x, y, distance):
+            if connection(grid, i, j, x, y, distance):
+                size+=visit(grid, x, y, visited, distance, max_x_idx, max_y_idx)
+    x=min(max_x_idx-1, i+2)
+    for y in range(left_bound_y, right_bound_y):
+            if connection(grid, i, j, x, y, distance):
                 size+=visit(grid, x, y, visited, distance, max_x_idx, max_y_idx)
     return size
 
@@ -78,7 +86,7 @@ def print_components_sizes(distance, grid, to_visit, visited):
         if not visited[i][j]:
             components_sizes.append(visit(grid, i, j, visited, distance, max_x_idx, max_y_idx))
     components_sizes.sort(reverse=True)
-    print(components_sizes, len(components_sizes))
+    print(components_sizes)
 
 def main():
     """

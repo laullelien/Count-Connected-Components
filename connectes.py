@@ -17,8 +17,7 @@ def load_instance(filename):
         lines = iter(instance_file)
         distance = float(next(lines))
         points = [] 
-        for line in lines: 
-            points.append(tuple(map(float, line.split(", ")))) 
+        points=[tuple(map(float, line.split(", "))) for line in lines]
         min_x = min(p[0] for p in points) 
         max_x = max(p[0] for p in points) 
         min_y = min(p[1] for p in points) 
@@ -38,8 +37,6 @@ def visit(distance,distance_s, grid, to_visit, x_cells, y_cells, min_x, min_y, s
     """
     returns the size of the connecting components containing the points of grid[i][j]
     """
-    if not stack:
-        return 0
     size=0
     stacks=dict()
     idx_x=int((stack[0][0]-min_x)/distance)
@@ -56,7 +53,8 @@ def visit(distance,distance_s, grid, to_visit, x_cells, y_cells, min_x, min_y, s
                         to_visit.remove(q)
     stacks.pop((idx_x, idx_y))
     for s in stacks.values():
-        size+=visit(distance,distance_s, grid, to_visit, x_cells, y_cells, min_x, min_y, s)
+        if s:
+            size+=visit(distance,distance_s, grid, to_visit, x_cells, y_cells, min_x, min_y, s)
     return size
 
                 

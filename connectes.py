@@ -16,75 +16,62 @@ def load_instance(filename):
     with open(filename, "r") as instance_file:
         lines = iter(instance_file)
         distance = float(next(lines))
-        x_coord = list()
-        y_coord = list()
-        for l in lines:
-            new_point=[float(f) for f in l.split(",")]
-            x_coord.append(new_point[0])
-            y_coord.append(new_point[1])
-        min_x=min(x_coord)
-        max_x=max(x_coord)
-        min_y=min(y_coord) 
-        max_y=max(y_coord)
-        cell_size=0.7071067811865475*distance
-        grid=[[ [] for _ in range(int((max_y-min_y)/cell_size)+1) ] for _ in range(int((max_x-min_x)/cell_size)+1)]
-        visited=[[ False for _ in range(int((max_y-min_y)/cell_size)+1) ] for _ in range(int((max_x-min_x)/cell_size)+1)]
-        to_visit=set()
-        for i in range(len(x_coord)):
-            idx_x=int((x_coord[i]-min_x)/cell_size)
-            idx_y=int((y_coord[i]-min_y)/cell_size)
-            grid[idx_x][idx_y].append((x_coord[i], y_coord[i]))
-            to_visit.add((idx_x, idx_y))
-    return distance**2, grid, to_visit, visited
+        points = [] 
+        for line in lines: 
+            points.append(tuple(map(float, line.split(", ")))) 
+        min_x = min(p[0] for p in points) 
+        max_x = max(p[0] for p in points) 
+        min_y = min(p[1] for p in points) 
+        max_y = max(p[1] for p in points)
+        x_cells= int((max_x-min_x)/distance)+1
+        y_cells= int((max_y-min_y)/distance)+1
+        grid=[[ [] for _ in range(y_cells) ] for _ in range(x_cells)]
+        to_visit=set(points)
+        for p in points:
+            idx_x=int((p[0]-min_x)/distance)
+            idx_y=int((p[1]-min_y)/distance)
+            grid[idx_x][idx_y].append((p[0], p[1]))
+    return distance, grid, to_visit, x_cells, y_cells, min_x, min_y
 
 
-def visit(grid, i, j, visited, distance, max_x_idx, max_y_idx):
+def visit(distance,distance_s, grid, to_visit, x_cells, y_cells, min_x, min_y, stack):
     """
     returns the size of the connecting components containing the points of grid[i][j]
     """
-    if not grid[i][j] or visited[i][j]:
+    if not stack:
         return 0
-    visited[i][j]=True
-    size=len(grid[i][j])
-    left_bound_y=max(0, j-1)
-    right_bound_y=min(max_y_idx, j+2)
-    x=max(0, i-2)
-    for y in range(left_bound_y, right_bound_y):
-        if connection(grid, i, j, x, y, distance):
-            size+=visit(grid, x, y, visited, distance, max_x_idx, max_y_idx)
-    for x in range(max(0, i-1), min(max_x_idx, i+2)):
-        for y in range(max(0, j-2), min(max_y_idx, j+3)):
-            if connection(grid, i, j, x, y, distance):
-                size+=visit(grid, x, y, visited, distance, max_x_idx, max_y_idx)
-    x=min(max_x_idx-1, i+2)
-    for y in range(left_bound_y, right_bound_y):
-            if connection(grid, i, j, x, y, distance):
-                size+=visit(grid, x, y, visited, distance, max_x_idx, max_y_idx)
+    size=0
+    stacks=dict()
+    idx_x=int((stack[0][0]-min_x)/distance)
+    idx_y=int((stack[0][1]-min_y)/distance)
+    stacks[(idx_x, idx_y)]=stack
+    while stack:
+        p=stack.pop()
+        size+=1
+        for i in range(max(idx_x-1, 0), min(idx_x +2, x_cells)):
+            for j in range(max(idx_y-1, 0), min( idx_y +2, y_cells)):
+                for q in grid[i][j]:
+                    if q in to_visit and is_connected(p, q, distance_s,):
+                        stacks.setdefault((i, j), list()).append(q)
+                        to_visit.remove(q)
+    stacks.pop((idx_x, idx_y))
+    for s in stacks.values():
+        size+=visit(distance,distance_s, grid, to_visit, x_cells, y_cells, min_x, min_y, s)
     return size
 
                 
-def connection(grid, i, j, x, y, distance):
-    """
-    returns whether some points of grid[i][j] and grid[x][y] are connected
-    """
-    for p in grid[i][j]:
-        for q in grid[x][y]:
-            if (p[0]-q[0])**2+(p[1]-q[1])**2 <= distance:
-                return True
-    return False
+def is_connected(p, q, distance):
+    return (p[0]-q[0])**2+(p[1]-q[1])**2 <= distance
 
 
 
-def print_components_sizes(distance, grid, to_visit, visited):
+def print_components_sizes(distance,distance_s, grid, to_visit, x_cells, y_cells, min_x, min_y):
     """
     prints the sizes of the connected components in decreasing order
     """
     components_sizes=list()
-    max_x_idx=len(grid)
-    max_y_idx=len(grid[0])
-    for i, j in to_visit:
-        if not visited[i][j]:
-            components_sizes.append(visit(grid, i, j, visited, distance, max_x_idx, max_y_idx))
+    while to_visit:
+        components_sizes.append(visit(distance,distance_s, grid, to_visit, x_cells, y_cells, min_x, min_y, [to_visit.pop()]))
     components_sizes.sort(reverse=True)
     print(components_sizes)
 
@@ -93,8 +80,8 @@ def main():
     loads an instance and prints the sizes
     """
     for instance in argv[1:]:
-        distance, grid, to_visit, visited = load_instance(instance)
-        print_components_sizes(distance, grid, to_visit, visited)
+        distance, grid, to_visit, x_cells, y_cells, min_x, min_y=load_instance(instance)
+        print_components_sizes(distance, distance**2, grid, to_visit, x_cells, y_cells, min_x, min_y)
 
 
 main()

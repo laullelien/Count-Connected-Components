@@ -16,7 +16,7 @@ def load_instance(filename):
     with open(filename, "r") as instance_file:
         lines = iter(instance_file)
         distance = float(next(lines))
-        cell_size = 0.5*distance
+        cell_size = 0.7071067811865475*distance
         cells = int(1/cell_size)+1
         grid = dict()
         for l in lines:
@@ -33,27 +33,2206 @@ def visit(distance_s, grid, coord, points):
     i, j = coord
     size = len(points)
 
-    for y in range(j-2, j+3):
-        for x in range(i-2, i):
-            neighbour_coord = (x, y)
-            if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
-                size += visit(distance_s, grid, neighbour_coord,
-                              grid.pop(neighbour_coord))
-        for x in range(i+1, i+3):
-            neighbour_coord = (x, y)
-            if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
-                size += visit(distance_s, grid, neighbour_coord,
-                              grid.pop(neighbour_coord))
-    for y in range(j-2, j):
-        neighbour_coord = (i, y)
-        if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
-            size += visit(distance_s, grid, neighbour_coord,
-                          grid.pop(neighbour_coord))
-    for y in range(j+1, j+3):
-        neighbour_coord = (i, y)
-        if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
-            size += visit(distance_s, grid, neighbour_coord,
-                          grid.pop(neighbour_coord))
+    neighbour_coord = (i-2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_1(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_2(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_3(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_4(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_5(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_6(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_7(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_8(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_9(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_10(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_11(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_12(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_13(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_14(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_15(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_16(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_17(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_18(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_19(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_20(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    return size
+
+
+def visit_1(distance_s, grid, coord, points):
+    """
+    returns the size of the connecting components containing the points of grid[i][j]
+    """
+    i, j = coord
+    size = len(points)
+
+    neighbour_coord = (i-2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_1(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_2(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_3(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_4(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_5(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_6(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_7(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_8(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_9(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_10(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_11(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_12(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_13(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_14(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_15(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_16(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_17(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_18(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_19(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    return size
+
+
+def visit_2(distance_s, grid, coord, points):
+    """
+    returns the size of the connecting components containing the points of grid[i][j]
+    """
+    i, j = coord
+    size = len(points)
+
+    neighbour_coord = (i-2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_1(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_2(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_3(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_4(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_5(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_6(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_7(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_8(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_9(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_10(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_11(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_12(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_13(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_14(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_15(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_16(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_17(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_18(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_20(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    return size
+
+
+def visit_3(distance_s, grid, coord, points):
+    """
+    returns the size of the connecting components containing the points of grid[i][j]
+    """
+    i, j = coord
+    size = len(points)
+
+    neighbour_coord = (i-2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_1(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_2(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_3(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_4(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_5(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_6(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_7(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_8(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_9(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_10(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_11(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_12(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_13(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_14(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_15(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_16(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_17(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_19(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_20(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    return size
+
+
+def visit_4(distance_s, grid, coord, points):
+    """
+    returns the size of the connecting components containing the points of grid[i][j]
+    """
+    i, j = coord
+    size = len(points)
+
+    neighbour_coord = (i-2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_1(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_2(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_3(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_4(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_5(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_6(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_7(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_8(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_9(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_10(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_11(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_12(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_13(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_14(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_15(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_16(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_18(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_19(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_20(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    return size
+
+
+def visit_5(distance_s, grid, coord, points):
+    """
+    returns the size of the connecting components containing the points of grid[i][j]
+    """
+    i, j = coord
+    size = len(points)
+
+    neighbour_coord = (i-2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_1(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_2(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_3(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_4(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_5(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_6(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_7(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_8(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_9(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_10(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_11(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_12(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_13(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_14(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_15(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_17(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_18(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_19(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_20(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    return size
+
+
+def visit_6(distance_s, grid, coord, points):
+    """
+    returns the size of the connecting components containing the points of grid[i][j]
+    """
+    i, j = coord
+    size = len(points)
+
+    neighbour_coord = (i-2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_1(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_2(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_3(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_4(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_5(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_6(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_7(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_8(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_9(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_10(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_11(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_12(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_13(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_14(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_16(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_17(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_18(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_19(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_20(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    return size
+
+
+def visit_7(distance_s, grid, coord, points):
+    """
+    returns the size of the connecting components containing the points of grid[i][j]
+    """
+    i, j = coord
+    size = len(points)
+
+    neighbour_coord = (i-2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_1(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_2(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_3(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_4(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_5(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_6(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_7(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_8(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_9(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_10(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_11(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_12(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_13(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_15(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_16(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_17(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_18(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_19(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_20(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    return size
+
+
+def visit_8(distance_s, grid, coord, points):
+    """
+    returns the size of the connecting components containing the points of grid[i][j]
+    """
+    i, j = coord
+    size = len(points)
+
+    neighbour_coord = (i-2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_1(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_2(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_3(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_4(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_5(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_6(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_7(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_8(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_9(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_10(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_11(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_12(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_14(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_15(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_16(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_17(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_18(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_19(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_20(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    return size
+
+
+def visit_9(distance_s, grid, coord, points):
+    """
+    returns the size of the connecting components containing the points of grid[i][j]
+    """
+    i, j = coord
+    size = len(points)
+
+    neighbour_coord = (i-2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_1(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_2(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_3(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_4(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_5(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_6(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_7(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_8(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_9(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_10(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_11(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_13(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_14(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_15(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_16(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_17(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_18(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_19(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_20(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    return size
+
+
+def visit_10(distance_s, grid, coord, points):
+    """
+    returns the size of the connecting components containing the points of grid[i][j]
+    """
+    i, j = coord
+    size = len(points)
+
+    neighbour_coord = (i-2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_1(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_2(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_3(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_4(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_5(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_6(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_7(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_8(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_9(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_10(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_12(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_13(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_14(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_15(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_16(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_17(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_18(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_19(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_20(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    return size
+
+
+def visit_11(distance_s, grid, coord, points):
+    """
+    returns the size of the connecting components containing the points of grid[i][j]
+    """
+    i, j = coord
+    size = len(points)
+
+    neighbour_coord = (i-2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_1(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_2(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_3(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_4(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_5(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_6(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_7(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_8(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_9(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_11(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_12(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_13(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_14(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_15(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_16(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_17(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_18(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_19(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_20(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    return size
+
+
+def visit_12(distance_s, grid, coord, points):
+    """
+    returns the size of the connecting components containing the points of grid[i][j]
+    """
+    i, j = coord
+    size = len(points)
+
+    neighbour_coord = (i-2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_1(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_2(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_3(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_4(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_5(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_6(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_7(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_8(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_10(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_11(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_12(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_13(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_14(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_15(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_16(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_17(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_18(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_19(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_20(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    return size
+
+
+def visit_13(distance_s, grid, coord, points):
+    """
+    returns the size of the connecting components containing the points of grid[i][j]
+    """
+    i, j = coord
+    size = len(points)
+
+    neighbour_coord = (i-2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_1(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_2(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_3(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_4(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_5(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_6(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_7(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_9(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_10(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_11(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_12(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_13(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_14(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_15(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_16(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_17(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_18(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_19(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_20(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    return size
+
+
+def visit_14(distance_s, grid, coord, points):
+    """
+    returns the size of the connecting components containing the points of grid[i][j]
+    """
+    i, j = coord
+    size = len(points)
+
+    neighbour_coord = (i-2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_1(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_2(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_3(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_4(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_5(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_6(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_8(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_9(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_10(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_11(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_12(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_13(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_14(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_15(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_16(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_17(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_18(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_19(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_20(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    return size
+
+
+def visit_15(distance_s, grid, coord, points):
+    """
+    returns the size of the connecting components containing the points of grid[i][j]
+    """
+    i, j = coord
+    size = len(points)
+
+    neighbour_coord = (i-2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_1(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_2(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_3(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_4(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_5(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_7(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_8(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_9(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_10(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_11(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_12(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_13(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_14(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_15(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_16(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_17(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_18(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_19(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_20(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    return size
+
+
+def visit_16(distance_s, grid, coord, points):
+    """
+    returns the size of the connecting components containing the points of grid[i][j]
+    """
+    i, j = coord
+    size = len(points)
+
+    neighbour_coord = (i-2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_1(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_2(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_3(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_4(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_6(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_7(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_8(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_9(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_10(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_11(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_12(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_13(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_14(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_15(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_16(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_17(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_18(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_19(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_20(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    return size
+
+
+def visit_17(distance_s, grid, coord, points):
+    """
+    returns the size of the connecting components containing the points of grid[i][j]
+    """
+    i, j = coord
+    size = len(points)
+
+    neighbour_coord = (i-2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_1(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_2(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_3(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_5(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_6(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_7(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_8(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_9(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_10(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_11(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_12(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_13(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_14(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_15(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_16(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_17(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_18(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_19(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_20(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    return size
+
+
+def visit_18(distance_s, grid, coord, points):
+    """
+    returns the size of the connecting components containing the points of grid[i][j]
+    """
+    i, j = coord
+    size = len(points)
+
+    neighbour_coord = (i-2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_1(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_2(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_4(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_5(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_6(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_7(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_8(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_9(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_10(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_11(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_12(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_13(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_14(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_15(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_16(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_17(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_18(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_19(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_20(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    return size
+
+
+def visit_19(distance_s, grid, coord, points):
+    """
+    returns the size of the connecting components containing the points of grid[i][j]
+    """
+    i, j = coord
+    size = len(points)
+
+    neighbour_coord = (i-2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_1(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_3(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_4(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_5(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_6(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_7(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_8(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_9(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_10(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_11(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_12(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_13(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_14(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_15(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_16(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_17(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_18(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_19(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_20(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    return size
+
+
+def visit_20(distance_s, grid, coord, points):
+    """
+    returns the size of the connecting components containing the points of grid[i][j]
+    """
+    i, j = coord
+    size = len(points)
+
+    neighbour_coord = (i-2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_2(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_3(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_4(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_5(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_6(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_7(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i-1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_8(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_9(distance_s, grid, neighbour_coord,
+                        grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_10(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_11(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_12(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_13(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_14(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_15(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_16(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+1, j+2)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_17(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j-1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_18(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_19(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
+    neighbour_coord = (i+2, j+1)
+    if neighbour_coord in grid and is_connected(points, neighbour_coord, grid, distance_s):
+        size += visit_20(distance_s, grid, neighbour_coord,
+                         grid.pop(neighbour_coord))
+
     return size
 
 
